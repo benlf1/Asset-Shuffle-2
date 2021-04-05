@@ -2457,3 +2457,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: {fileID: 1999678732}
   currDirection: {x: 0, y: 0}
+  shootCooldown: 0
