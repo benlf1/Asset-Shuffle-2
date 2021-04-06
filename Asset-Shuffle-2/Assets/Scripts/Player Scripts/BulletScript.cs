@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float moveSpeed = 1;
+    public float moveSpeed = 5;
+
+    private Vector3 velocity;
     void Start()
     {
-        
+        velocity = transform.up * moveSpeed;   
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 velocity = transform.forward * moveSpeed * Time.deltaTime;
-        transform.position += velocity;
+        transform.position += velocity * Time.deltaTime;
     }
 
-    void OnBecameInvisible()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(gameObject);
+        if(col.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -10,8 +10,8 @@ public class PlayerController : Controller
     public PlayerHost host;
 
     [SerializeField] private Vector2 currDirection;
-    private float shootTime;
-    public float shootCooldown;
+    private float shootTime = 0;
+    public float shootCooldown = 1;
 
     public GameObject bullet;
 
@@ -46,8 +46,16 @@ public class PlayerController : Controller
     {
         if (Input.GetButton("Fire1") && Time.time >= shootTime)
         {
-            GameObject b = Instantiate(bullet, transform.position + transform.forward * 1, transform.rotation);
+            GameObject b = Instantiate(bullet, transform.position + transform.up * 0.5f, transform.rotation);
             shootTime = Time.time + shootCooldown;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Enemy")
+        {
+            this.gameObject.SetActive(false);
         }
     }
     #endregion
